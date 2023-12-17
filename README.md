@@ -150,3 +150,9 @@ catch (Exception ex)
 
 This example illustrates how to hash the content of a file, displaying the file path and its resulting SHA-256 hash value.
 
+
+### Hash function,C# Visual Studio screenshot
+![image](https://github.com/leofromRTU/Crypto-rtu/assets/154064793/89bf4efe-eb4a-4322-ae96-cd56631c82bb)
+![image](https://github.com/leofromRTU/Crypto-rtu/assets/154064793/1e51c2c3-3194-49a6-80df-9717e7e29c08)
+![image](https://github.com/leofromRTU/Crypto-rtu/assets/154064793/9120f965-2c4c-49f1-b46d-451d980b16cf)
+

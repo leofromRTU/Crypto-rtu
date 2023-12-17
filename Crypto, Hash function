@@ -1,0 +1,70 @@
+using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        // Example 1: Hashing a text string
+        string inputText = "This is an example of hashing in C# with SHA-256.";
+        byte[] hashedTextBytes = CalculateSHA256(inputText);
+        string hashedTextString = ByteArrayToString(hashedTextBytes);
+        Console.WriteLine("\n\nExample 1:");
+        Console.WriteLine("Input: " + inputText);
+        Console.WriteLine("Hashed output (SHA-256): " + hashedTextString);
+        Console.WriteLine();
+
+        // Example 2: Hashing the content of a file
+        string filePath = "Crypto_test.txt"; // Replace with the actual file path
+        try
+        {
+            byte[] fileBytes = File.ReadAllBytes(filePath);
+            byte[] hashedFileBytes = CalculateSHA256(fileBytes);
+            string hashedFileString = ByteArrayToString(hashedFileBytes);
+            Console.WriteLine("\n\nExample 2:");
+            Console.WriteLine("File path: " + filePath);
+            Console.WriteLine("File hashed output (SHA-256): " + hashedFileString);
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("\n\nExample 2:");
+            Console.WriteLine("The specified file was not found.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("\n\nExample 2:");
+            Console.WriteLine("An error occurred while reading the file: " + ex.Message);
+        }
+    }
+
+    // SHA-256 hash function
+    static byte[] CalculateSHA256(string input)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            return sha256.ComputeHash(inputBytes);
+        }
+    }
+
+    static byte[] CalculateSHA256(byte[] inputBytes)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            return sha256.ComputeHash(inputBytes);
+        }
+    }
+
+    // Convert byte array to hexadecimal string
+    static string ByteArrayToString(byte[] array)
+    {
+        StringBuilder builder = new StringBuilder();
+        foreach (byte value in array)
+        {
+            builder.Append(value.ToString("x2")); // Convert to hexadecimal representation
+        }
+        return builder.ToString();
+    }
+}
